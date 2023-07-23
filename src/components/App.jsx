@@ -21,7 +21,7 @@ export const App = () => {
       ...data,
     };
 
-    contacts.some(({ name }) => name === data.name)
+    contacts.some(({ name }) => name.toLowerCase().trim() === data.name.toLowerCase().trim() || name.trim() === data.name.trim())
       ? Notiflix.Notify.warning(`Alert, ${data.name} is already in contacts`)
       : setContacts(prevContacts => (
            [...prevContacts, newContact]));
@@ -38,7 +38,7 @@ export const App = () => {
   const getFilterContacts = () => {
     const FilterlowerCase = filter.toLowerCase();
     return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(FilterlowerCase)
+      name.toLowerCase().trim().includes(FilterlowerCase)
     );
   };
 
